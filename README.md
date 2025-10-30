@@ -1,22 +1,20 @@
 # GCP Data Pipeline Project
 
-## Project Overview
-This project demonstrates a foundational ETL (Extract → Load) pipeline using Python, Google Cloud Storage (GCS), and BigQuery. It’s a real-world data engineering workflow where data is extracted, uploaded to GCS, and loaded into BigQuery using CLI authentication. This project is ideal for showcasing foundational data engineering skills.
+## Week 1 – Setup & Raw Data Upload
+- Created a GCP project and Cloud Storage bucket
+- Uploaded raw CSV files using Python
+- Loaded data into BigQuery and validated
+- Skills: Python, GCP, BigQuery, ETL, SQL
 
-## Features
-- Extracts sample data from CSV files
-- Uploads data to Google Cloud Storage
-- Loads data into BigQuery tables
-- Demonstrates use of Python for automation and cloud integration
-- Utilizes CLI for authentication and managing cloud resources
+## Week 2 – Data Cleaning & Automation
+- Implemented data cleaning using Pandas (removed missing rows, standardized column names)
+- Automated uploading cleaned CSV to GCS
+- Loaded cleaned data into BigQuery (`cleaned_sample_table`)
+- Combined cleaning + upload in one script (`etl_pipeline.py`) for automation
+- Skills: Python, Pandas, ETL, GCP, BigQuery, Automation
 
-## Technologies Used
-- Python
-- Google Cloud Storage (GCS)
-- BigQuery
-- Google Cloud CLI
-
-## How to Run
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/Ruthvikyadavm/gcp-data-pipeline-project.git
+**Commands to run Week 2 pipeline:**
+```bash
+python etl_pipeline.py
+# gcp-data-pipeline-project
+Data engineering pipeline using Python and GCP (BigQuery + Cloud Storage)
