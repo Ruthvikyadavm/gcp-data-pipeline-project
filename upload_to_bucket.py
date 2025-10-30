@@ -15,3 +15,5 @@ if __name__ == "__main__":
     destination_blob_name = "data/sample_data.csv"
 
     upload_to_bucket(bucket_name, source_file_name, destination_blob_name)
+if __name__ == "__main__":
+    upload_to_bucket("ruthvik-data-pipeline-bucket", "cleaned_data.csv", "data/cleaned_data.csv")
