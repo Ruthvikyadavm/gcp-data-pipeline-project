@@ -1,3 +1,17 @@
+## 🧠 Project Summary
+
+This project demonstrates a complete end-to-end Data Engineering pipeline on Google Cloud:
+- Data ingestion to Google Cloud Storage
+- Transformation using Pandas & PySpark on Dataproc
+- Warehouse loading and analytics in BigQuery
+- Dashboard visualization in Looker Studio
+
+This simulates real enterprise ETL workflows and showcases cloud data engineering skills.
+
+------
+## 🏗️ Architecture Diagram
+![Architecture Diagram](gcp_bold_pipeline_diagram.png)
+
 **Week 1 – Initial Setup & Data Loading**
 
 **Tasks Completed:**
@@ -120,6 +134,7 @@ In Week 4, the processed dataset from Week 3 was analyzed and visualized to extr
 **Dashboard Screenshot:**
 
 ![Week 4 Dashboard](week4_dashboard.png)
+
 
 
 
