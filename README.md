@@ -74,7 +74,7 @@ README.md (updated documentation)
 
 --------------------------------------------------------
 
----
+
 
 ## Week 3 – Big Data Processing with PySpark on Dataproc
 
@@ -95,7 +95,6 @@ README.md (updated documentation)
 
 ---
 
----
 
 ## Week 4 – Data Insights & Visualization
 
@@ -121,6 +120,7 @@ In Week 4, the processed dataset from Week 3 was analyzed and visualized to extr
 **Dashboard Screenshot:**
 
 ![Week 4 Dashboard](week4_dashboard.png)
+
 
 
 
