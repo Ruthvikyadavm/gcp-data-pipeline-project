@@ -72,3 +72,56 @@ etl_pipeline.py
 
 README.md (updated documentation)
 
+--------------------------------------------------------
+
+---
+
+## Week 3 – Big Data Processing with PySpark on Dataproc
+
+**Tasks Completed:**
+- Created a Dataproc cluster to process large datasets using PySpark.
+- Ran PySpark job to clean, transform, and aggregate trip data at scale.
+- Wrote cleaned output back to Google Cloud Storage (`/week3/output/`).
+- Defined schema, validated data types, and ensured no data loss.
+
+**Skills Practiced:**
+- PySpark (RDDs & DataFrame API)
+- Google Cloud Dataproc (cluster provisioning and distributed jobs)
+- Distributed data transformation and optimization
+- Cloud Storage (Input / Output data paths)
+
+**Key Script(s):**
+- `process_big_data.py`
+
+---
+
+---
+
+## Week 4 – Data Insights & Visualization
+
+In Week 4, the processed dataset from Week 3 was analyzed and visualized to extract insights.
+
+**Tasks Completed:**
+- Loaded PySpark-processed output from GCS into BigQuery.
+- Performed analytical SQL queries to explore trip behavior and fare patterns.
+- Built a Looker Studio dashboard connected directly to BigQuery.
+
+**Dashboard Visualizations:**
+| Visualization | Description |
+|--------------|-------------|
+| **KPI Cards** | Total Trips and Average Fare across dataset. |
+| **Average Fare by Passenger Count** | Bar chart showing fare variation by group size. |
+| **Trips & Average Fare Over Time** | Dual-axis time-series showing volume vs. pricing trend. |
+
+**Key Insights:**
+- Average fare remains stable for passengers counts 1–6, but increases sharply for 7+ passengers.
+- Trip volume varies significantly over time, indicating seasonal or demand-driven fluctuations.
+- Average fare remains consistent even when total trips spike.
+
+**Dashboard Screenshot:**
+
+![Week 4 Dashboard](week4_dashboard.png)
+
+
+
+
