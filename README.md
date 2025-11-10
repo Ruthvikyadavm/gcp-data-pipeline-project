@@ -110,30 +110,48 @@ README.md (updated documentation)
 ---
 
 
-## Week 4 – Data Insights & Visualization
+## Week 4 – Data Insights & Visualization 🎨📊
 
-In Week 4, the processed dataset from Week 3 was analyzed and visualized to extract insights.
+In Week 4, we analyzed and visualized the cleaned trip data loaded into BigQuery.
 
-**Tasks Completed:**
-- Loaded PySpark-processed output from GCS into BigQuery.
-- Performed analytical SQL queries to explore trip behavior and fare patterns.
-- Built a Looker Studio dashboard connected directly to BigQuery.
+### ✅ Tasks Completed
+- Loaded final PySpark output from GCS into BigQuery (`nyc_taxi_demo.trips_cleaned`)
+- Wrote analytical SQL queries to generate aggregated insights
+- Built a Looker Studio dashboard connected live to BigQuery
+- Enabled auto-refresh based on Airflow pipeline updates
 
-**Dashboard Visualizations:**
-| Visualization | Description |
-|--------------|-------------|
-| **KPI Cards** | Total Trips and Average Fare across dataset. |
-| **Average Fare by Passenger Count** | Bar chart showing fare variation by group size. |
-| **Trips & Average Fare Over Time** | Dual-axis time-series showing volume vs. pricing trend. |
+---
 
-**Key Insights:**
-- Average fare remains stable for passengers counts 1–6, but increases sharply for 7+ passengers.
-- Trip volume varies significantly over time, indicating seasonal or demand-driven fluctuations.
-- Average fare remains consistent even when total trips spike.
+### 📊 Dashboard Preview
 
-**Dashboard Screenshot:**
+![NYC Taxi Dashboard](dashboard_nyc_taxi.png)
 
-![Week 4 Dashboard](week4_dashboard.png)
+**Live Dashboard Link:**  
+🔗 https://lookerstudio.google.com/reporting/9d456692-cd86-460e-9bbd-58e1bdc4413b
+
+---
+
+### 📈 Dashboard Visualizations
+
+| Chart | Description |
+|------|-------------|
+| Daily Revenue Trend | Revenue fluctuation over time |
+| Avg Distance Trend | Average trip length by date |
+| Top Pickup Locations | Most common pickup areas |
+| Data Table | Cleaned dataset preview for validation |
+
+---
+
+### 🔍 Key Insights
+- Over **2.8M+ trips** analyzed from NYC Yellow Taxi dataset
+- Revenue and trip distance show seasonal trends
+- Pickup hotspots are concentrated in key NYC transit + tourist zones
+- Data pipeline enables **automatic dashboard refresh** as new data is ingested
+
+---
+
+### 🗄️ Data Source
+
 
 
 
