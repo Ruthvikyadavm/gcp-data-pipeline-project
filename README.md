@@ -173,6 +173,11 @@ gcp-data-pipeline-project/
 
 ---
 
+## 🔗 Project Links
+
+- **Looker Studio Dashboard**: https://lookerstudio.google.com/reporting/9d456692-cd86-460e-9bbd-58e1bdc4413b  
+- **LinkedIn Post**: *[your post link]*  
+
 
 
 
