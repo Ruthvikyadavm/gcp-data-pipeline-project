@@ -1,191 +1,255 @@
-# End-to-End Data Engineering Pipeline on GCP
+🚀 End-to-End Data Engineering Pipeline on Google Cloud Platform (GCP)
 
-This project demonstrates a production-grade data pipeline built using **Google Cloud Platform (GCP)**, **PySpark**, and **Apache Airflow**.  
-The pipeline ingests raw NYC Taxi trip data, processes it with PySpark on Dataproc, loads it into BigQuery, and visualizes insights in Looker Studio.
+This project showcases a production-grade data pipeline built using
+Google Cloud Storage, PySpark on Dataproc, BigQuery, Apache Airflow, and Looker Studio.
 
-The full workflow represents real-world **batch data engineering and analytics**.
+The pipeline ingests raw NYC Yellow Taxi data → transforms it using distributed PySpark → loads it into BigQuery → visualizes insights → and finally supports real-time streaming via Kafka + Spark Structured Streaming.
 
----
+⚡ TL;DR — What I Built
+
+✔ Batch ingestion → GCS
+✔ Distributed processing → Dataproc (PySpark)
+✔ Data warehouse → BigQuery
+✔ Visualization → Looker Studio
+✔ Orchestration → Airflow DAG
+✔ Real-time streaming → Kafka + Spark Structured Streaming
+✔ Processed 2.7M+ records with optimized transformations
+
+🏗️ Full Architecture (Batch Pipeline)
+Raw CSV → Google Cloud Storage (Raw Zone)
+        → Dataproc PySpark Job (Transform & Clean)
+        → Google Cloud Storage (Processed Zone)
+        → BigQuery Partitioned Tables (Analytics Warehouse)
+        → Looker Studio Reports & Dashboards
 
 
-## 🏗️ Architecture Diagram
-Raw CSV → GCS (Raw Zone)
-→ PySpark on Dataproc (Transform & Clean)
-→ GCS (Processed Zone)
-→ BigQuery (Analytics Warehouse)
-→ Looker Studio (Visualization)
-![Architecture Diagram](gcp_bold_pipeline_diagram.png)
+🛠️ Technologies Used
+Component	Technology
+Cloud	Google Cloud Platform
+Storage	Google Cloud Storage (GCS)
+Compute	Dataproc (PySpark)
+ETL	Python, Spark
+Warehouse	BigQuery
+Orchestration	Apache Airflow
+Visualization	Looker Studio
+Streaming	Kafka + Spark Structured Streaming
+Language	Python, SQL
+Version Control	Git & GitHub
 
 
----
-
-## 🚀 Technologies Used
-
-| Component | Tool |
-|---------|------|
-| Storage | Google Cloud Storage (GCS) |
-| Processing | PySpark on Dataproc |
-| Data Warehouse | BigQuery |
-| Orchestration | Apache Airflow |
-| Dashboard | Looker Studio |
-| Language | Python & SQL |
-| Version Control | Git & GitHub |
-
----
-
-## 📌 Key Deliverables
-
-- Automated end-to-end ETL pipeline
-- PySpark transformation script processing **2.7M+ taxi records**
-- Partitioned BigQuery tables for optimized cost & performance
-- Looker Studio dashboard showing trip & fare insights
-
----
-
-## 📊 Dashboard  
-🔗 **Live Dashboard:**  
-https://lookerstudio.google.com/reporting/9d456692-cd86-460e-9bbd-58e1bdc4413b
-
----
-
-## 📁 Repository Folder Structure
-
+📁 Repository Structure
 gcp-data-pipeline-project/
 │
-├── week1/ → Raw ingestion to GCS + BigQuery load
-├── week2/ → Data cleaning + automated pipeline
-├── week3/ → PySpark job on Dataproc + processed outputs
-├── week4/ → Analytics & Dashboard
-└── dags/ → Airflow workflow definitions
+├── week1/        # Raw ingestion to GCS + BigQuery load
+├── week2/        # Data cleaning + automated pipeline
+├── week3/        # PySpark on Dataproc + processed outputs
+├── week4/        # BigQuery views + Looker dashboard
+├── week5/        # Kafka + Spark Structured Streaming
+│
+├── dags/         # Airflow DAG files
+│   └── gcs_to_bigquery_dag.py
+│
+├── screenshots/  # Architecture, GCS, BQ, Dashboard screenshots
+└── README.md
 
+🎯 How to Run the Project (Quick Start)
+1️⃣ Install Dependencies
+pip install -r requirements.txt
 
----
+2️⃣ Upload Raw CSV to GCS
+gsutil cp nyc_taxi_raw.csv gs://ruthvik-week3-bucket-2/raw/
 
-## 📝 BigQuery Views (Week 4)
+3️⃣ Run Week 2 Cleanup
+python week2/clean_data.py
 
-| View | Description |
-|------|-------------|
-| trips_by_passenger | Avg fare grouped by passenger count |
-| trips_over_time | Trips per day + daily averages |
-| high_fare_trips | Trips with unusually large fare values |
+4️⃣ Submit PySpark Job on Dataproc
+gcloud dataproc jobs submit pyspark \
+    --cluster=my-spark-cluster \
+    --region=us-central1 \
+    week3/process_big_data.py
 
----
+5️⃣ Airflow DAG Loads Processed CSV → BigQuery Automatically
+6️⃣ Open Looker Dashboard (Live Link)
 
-## 🧠 Key Insights
-
-- Avg fare remains stable for most rides, increases for groups of 7+
-- More trips **do not necessarily mean higher average fare**
-- Seasonal/time-based demand patterns are clearly visible
-
----
-
-
----
-
-## Week 1 – Data Ingestion & Environment Setup
-
-**Tasks Completed**
-- Created GCP project and configured IAM authentication
-- Uploaded NYC Taxi CSV dataset to **Google Cloud Storage (Raw Zone)**
-- Loaded raw data into **BigQuery** using auto-detected schema
-- Validated dataset structure using SQL queries
-
-**Key Skills Practiced**
-- Cloud Storage buckets
-- BigQuery table creation
-- Data validation & sanity checks
-- Python + gcloud CLI
-
----
-
-## Week 2 – Data Cleaning & Automated Pipeline
-
-**Tasks Completed**
-- Cleaned the raw dataset using **Pandas** (null handling, schema cleanup, type fixes)
-- Re-uploaded clean data to **GCS (Processed Zone)**
-- Loaded cleaned dataset into **BigQuery**
-- Automated the ETL pipeline
-
-**Key Skills Practiced**
-- Pandas data wrangling
-- ETL job scripting
-- Automated workflows
-- Data quality checks
-
----
-
-## Week 3 – Distributed Processing with PySpark (Dataproc)
-
-**Tasks Completed**
-- Created a **Dataproc cluster** for scalable distributed processing
-- Wrote and executed **PySpark** script to process 2.7M+ records
-- Saved processed Parquet/CSV output to **GCS**
-- Connected BigQuery to processed zone for analytics
-
-**Key Skills Practiced**
-- Spark DataFrames
-- Cluster-based data processing
-- Partitioning & performance optimization
-
----
-
-## Week 4 – Analytics & Visualization (Looker Studio)
-
-**Tasks Completed**
-- Query optimization & partitioned tables in BigQuery
-- Created analytical SQL views:
-  - `trips_by_passenger`
-  - `trips_over_time`
-  - `high_fare_trips`
-- Built a **Looker Studio dashboard** connected directly to BigQuery
-- Designed visual insights, metrics, trends, and anomaly detection
-
-**Dashboard Link**  
 🔗 https://lookerstudio.google.com/reporting/9d456692-cd86-460e-9bbd-58e1bdc4413b
-(week4_dashboard.png) 
-(dashboard_nyc_taxi.png)
 
-**Key Insights**
-- Average fare trends remain stable across most passenger counts, rises sharply for large groups
-- Demand spikes across certain dates do not correlate directly with fare spikes
-- Time-based ride patterns confirm clear seasonal & behavioral fluctuations
+📦 Week 1 – Data Ingestion & Environment Setup
+✔ Tasks Completed
 
----
+Created GCP project, service account, IAM roles
 
----
+Uploaded raw CSV into GCS (Raw Zone)
 
-### 📈 Dashboard Visualizations
+Loaded raw data into BigQuery using autodetect
 
-| Chart | Description |
-|------|-------------|
-| Daily Revenue Trend | Revenue fluctuation over time |
-| Avg Distance Trend | Average trip length by date |
-| Top Pickup Locations | Most common pickup areas |
-| Data Table | Cleaned dataset preview for validation |
+Explored dataset using SQL queries
 
----
+🧠 Skills Practiced
 
-### 🔍 Key Insights
-- Over **2.8M+ trips** analyzed from NYC Yellow Taxi dataset
-- Revenue and trip distance show seasonal trends
-- Pickup hotspots are concentrated in key NYC transit + tourist zones
-- Data pipeline enables **automatic dashboard refresh** as new data is ingested
+GCS buckets, BigQuery tables, schema detection, gcloud CLI, Python.
 
----
+🧹 Week 2 – Data Cleaning & Automated ETL
+✔ Tasks Completed
 
-## 🔗 Project Links
+Performed data cleaning using Pandas
 
-- **Looker Studio Dashboard**: https://lookerstudio.google.com/reporting/9d456692-cd86-460e-9bbd-58e1bdc4413b  
-- **LinkedIn**: https://www.linkedin.com/in/ruthvikyadav/  
+Fixed inconsistent types, nulls, outliers
+
+Uploaded the cleaned dataset to GCS (Processed Zone)
+
+Automated ingestion script
+
+🧠 Skills Practiced
+
+Python ETL, Pandas, data quality checks, automation.
+
+⚡ Week 3 – Distributed Processing with PySpark (Dataproc)
+✔ Tasks Completed
+
+Created Dataproc cluster
+
+Executed PySpark job on 2.7M+ records
+
+Stored processed outputs into GCS as Parquet/CSV
+
+Connected BigQuery to processed data
+
+🧠 Skills Practiced
+
+Spark DataFrames, partitioning, cluster-based ETL, optimization.
+
+📊 Week 4 – BigQuery Analytics + Looker Dashboard
+✔ Views Created
+View	Purpose
+trips_by_passenger	Avg fare by passenger count
+trips_over_time	Daily trip patterns
+high_fare_trips	Outlier fare detection
+✔ Dashboard Includes
+
+Daily revenue trend
+
+Avg distance trend
+
+Top pickup zones
+
+Fare distribution
+
+🔗 Live Dashboard:
+https://lookerstudio.google.com/reporting/9d456692-cd86-460e-9bbd-58e1bdc4413b
+
+🌬️ Week 5 – Real-Time Streaming (Kafka + Spark Structured Streaming)
+
+This week adds near real-time micro-batch processing.
+
+🔥 Architecture
+Producer → Kafka Topic (`taxi_trips`) 
+        → Spark Structured Streaming (JSON processing)
+        → GCS / Local JSON Output
+
+✔ Technologies Used
+
+Kafka 3.5.1, Zookeeper, Spark 3.5.1, JSON events, WSL2 Ubuntu.
+
+✔ Real Output Sample
+{"VendorID":1,"trip_distance":3.5,"fare_amount":12.5,...}
+
+✔ What I Learned
+
+Kafka topic creation
+
+Producer/Consumer basics
+
+Micro-batch streaming
+
+Checkpointing & fault tolerance
+
+Fixing Spark classpath issues
+
+🌀 Orchestration — Airflow DAG
+
+This DAG automatically:
+
+Lists all processed CSV files in GCS
+
+Loads them into BigQuery
+
+Truncates table and refreshes analytics daily
+
+📌 DAG Code Used
+from datetime import datetime
+from airflow import DAG
+from airflow.providers.google.cloud.operators.gcs import GCSListObjectsOperator
+from airflow.providers.google.cloud.transfers.gcs_to_bigquery import GCSToBigQueryOperator
 
 
+with DAG(
+    dag_id="gcs_to_bigquery_dag",
+    start_date=datetime(2025, 11, 8),
+    schedule="0 0 * * *",   # Runs once per day
+    catchup=False,
+    tags=["gcs", "bigquery"],
+):
+    
+    list_gcs_files = GCSListObjectsOperator(
+        task_id="list_gcs_files",
+        bucket="ruthvik-week3-bucket-2",
+        prefix="",
+        gcp_conn_id="google_cloud_default"
+    )
 
+    load_to_bigquery = GCSToBigQueryOperator(
+        task_id="load_to_bigquery",
+        bucket="ruthvik-week3-bucket-2",
+        source_objects=["week3/output/part-*.csv"],
+        destination_project_dataset_table="ruthvik-week3-dataproc.nyc_taxi_demo.trips",
+        write_disposition="WRITE_TRUNCATE",
+        source_format="CSV",
+        skip_leading_rows=1,
+        autodetect=True,
+        gcp_conn_id="google_cloud_default",
+    )
 
+    list_gcs_files >> load_to_bigquery
 
+✔ Add this Screenshot
 
+Airflow Graph view
 
+Airflow Code view
 
+Successful DAG run
 
+📈 Key Insights from the Data
 
+2.8M+ rides analyzed
 
+Avg fare stays stable for 1–4 passengers, spikes at 7+
 
+Trip volume spikes ≠ fare spikes
+
+Pickup hotspots: Manhattan transit, tourist zones
+
+Seasonal patterns in trip count & revenue
+
+🎯 Next Steps (Planned Enhancements)
+
+Stream Kafka data directly into BigQuery
+
+Add Kafka Connect + Schema Registry
+
+Add Terraform (IaC for bucket, cluster, BQ)
+
+Add CI/CD using Cloud Build or GitHub Actions
+
+Build a monitoring dashboard (Cloud Logging + Grafana)
+
+🔗 Important Links
+
+🔸 Dashboard
+https://lookerstudio.google.com/reporting/9d456692-cd86-460e-9bbd-58e1bdc4413b
+
+🔸 LinkedIn
+https://www.linkedin.com/in/ruthvikyadav/
+
+🔸 GitHub Repository
+https://github.com/Ruthvikyadavm/gcp-data-pipeline-project
