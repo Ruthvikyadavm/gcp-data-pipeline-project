@@ -1,0 +1,6 @@
+pandas
+pyspark
+google-cloud-storage
+google-cloud-bigquery
+apache-airflow
+kafka-python
