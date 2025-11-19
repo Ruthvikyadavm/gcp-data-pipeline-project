@@ -50,3 +50,4 @@ query = final_df.writeStream \
 
 
 query.awaitTermination()
+
