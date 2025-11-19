@@ -1,0 +1,28 @@
+[
+  {
+    "VendorID": 2,
+    "tpep_pickup_datetime": "2019-01-01 00:46:40",
+    "tpep_dropoff_datetime": "2019-01-01 00:53:20",
+    "passenger_count": 1,
+    "trip_distance": 1.5,
+    "RatecodeID": 1,
+    "store_and_fwd_flag": "N",
+    "PULocationID": 151,
+    "DOLocationID": 239,
+    "payment_type": 1,
+    "fare_amount": 8.5
+  },
+  {
+    "VendorID": 1,
+    "tpep_pickup_datetime": "2019-01-01 00:59:47",
+    "tpep_dropoff_datetime": "2019-01-01 01:07:30",
+    "passenger_count": 1,
+    "trip_distance": 2.1,
+    "RatecodeID": 1,
+    "store_and_fwd_flag": "N",
+    "PULocationID": 239,
+    "DOLocationID": 246,
+    "payment_type": 1,
+    "fare_amount": 10.5
+  }
+]
