@@ -153,10 +153,12 @@ Spark DataFrames, partitioning, cluster-based ETL, optimization.
 
 ✔ SQL Views Created
 
-View	                Description
-trips_by_passenger	Avg fare vs passenger count
+View	                    Description
+trips_by_passenger	     Avg fare vs passenger count
 trips_over_time	        Daily trip counts and seasonality
 high_fare_trips	        Outlier/high value rides
+
+-----
 
 ✔ Dashboard Includes
 
@@ -170,6 +172,8 @@ Fare distribution
 
 🔗 Live Dashboard:
 https://lookerstudio.google.com/reporting/9d456692-cd86-460e-9bbd-58e1bdc4413b
+
+-------
 
 🌬️ Week 5 – Real-Time Streaming (Kafka + Spark Structured Streaming)
 
@@ -199,6 +203,8 @@ Checkpointing & fault tolerance
 
 Fixing Spark classpath issues
 
+-------
+
 🌀 Orchestration — Airflow DAG
 
 This DAG automatically:
@@ -208,6 +214,8 @@ Lists all processed CSV files in GCS
 Loads them into BigQuery
 
 Truncates table and refreshes analytics daily
+
+----
 
 📌 DAG Code Used
 
@@ -246,6 +254,7 @@ with DAG(
 
     list_gcs_files >> load_to_bigquery
 
+-----
 
 
 Airflow Graph view
@@ -294,4 +303,5 @@ https://www.linkedin.com/in/ruthvikyadav/
 
 🔸 GitHub Repository
 https://github.com/Ruthvikyadavm/gcp-data-pipeline-project
+
 
