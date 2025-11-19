@@ -30,7 +30,7 @@ Raw CSV
    → Looker Studio (Visualization)
 ```
 
-![Architecture Diagram](gcp_bold_pipeline_diagram.png)
+![Architecture Diagram](architecture/gcp_bold_pipeline_diagram.png)
 
 ---
 
@@ -260,4 +260,5 @@ https://www.linkedin.com/in/ruthvikyadav/
 
 👉 **GitHub:**  
 https://github.com/Ruthvikyadavm/gcp-data-pipeline-project
+
 
