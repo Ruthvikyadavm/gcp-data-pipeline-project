@@ -61,7 +61,7 @@ Processed files loaded to BigQuery using:
 - Analytical views  
 
 📸 BigQuery Table Preview:  
-![bq-table-schema](screenshots/bigquery_tables.pngK)
+![bq-table-schema](screenshots/bigquery_tables.png)
 
 📸 BigQuery Views:  
 ![bq-views](screenshots/bigquery_views.png)
@@ -183,4 +183,5 @@ gcp-data-pipeline-project/
 🔗 YouTube Demo: https://youtu.be/Cb2BpFoL30g  
 
 ---
+
 
