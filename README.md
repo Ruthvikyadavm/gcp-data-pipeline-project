@@ -97,7 +97,7 @@ The full pipeline is automated with Airflow:
 - Writes micro-batches to output sink  
 - Fault-tolerant with checkpointing  
 
-📸 Spark Streaming Log (Optional screenshot):  
+📸 Spark Streaming Log:  
 ![spark-stream](screenshots/spark.png)
 
 ---
@@ -183,6 +183,7 @@ gcp-data-pipeline-project/
 🔗 YouTube Demo: https://youtu.be/Cb2BpFoL30g  
 
 ---
+
 
 
 
