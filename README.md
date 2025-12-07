@@ -45,7 +45,7 @@ PySpark cleans & transforms 2.7M+ rows:
 - Writes processed output to GCS  
 
 📸 Dataproc Cluster Creation:  
-![dataproc-create](screenshots/dataproc_cluster (2).png)
+![dataproc-create](screenshots/dataproc_cluster(2).png)
 
 📸 PySpark Output in GCS:  
 ![gcs-processed](screenshots/dataproc_cluster.png)
@@ -183,6 +183,7 @@ gcp-data-pipeline-project/
 🔗 YouTube Demo: https://youtu.be/Cb2BpFoL30g  
 
 ---
+
 
 
 
