@@ -1,194 +1,222 @@
-# 🚕 End-to-End Data Engineering Pipeline (GCP + Kafka + PySpark + Airflow)
+🚕 End-to-End Data Engineering Pipeline
 
-This project demonstrates a **production-grade data pipeline** built using  
-**Google Cloud Platform, Apache Kafka, PySpark on Dataproc, Airflow, and BigQuery**,  
-including both **batch processing** and **real-time streaming**.
+GCP | PySpark | Kafka | Spark Structured Streaming | Airflow | BigQuery
 
-🔗 **YouTube Walkthrough:** https://youtu.be/Cb2BpFoL30g  
-🔗 **Looker Studio Dashboard:** https://lookerstudio.google.com/reporting/9d456692-cd86-460e-9bbd-58e1bdc4413b  
+This project demonstrates a production-grade data engineering pipeline on Google Cloud Platform, supporting batch ETL and real-time streaming use cases.
 
----
+📊 Records processed: 2.7M+
+⚙️ Architecture: Batch + Streaming
+🎥 YouTube Demo: https://youtu.be/Cb2BpFoL30g
 
-## 📌 Architecture Overview
+📈 Dashboard: https://lookerstudio.google.com/reporting/9d456692-cd86-460e-9bbd-58e1bdc4413b
 
-### **Batch Pipeline (ETL)**
-Raw CSV → GCS Raw Zone → PySpark on Dataproc → GCS Processed Zone → BigQuery → Dashboard
+🏗️ Architecture
+Batch ETL
 
-![architecture-batch](screenshots/batch_architecture.png)
+Raw CSV → GCS → PySpark (Dataproc) → GCS Processed → BigQuery → Looker
 
-### **Real-Time Pipeline**
-Kafka Producer → Kafka Topic → Spark Structured Streaming → BigQuery Live Table
+Streaming
 
-![architecture-streaming](screenshots/stream_architecture.png)
+Kafka → Spark Structured Streaming → BigQuery
 
----
-
-# 🚀 **1. Batch ETL Pipeline (GCP)**
-
-### **1.1 Upload raw dataset to GCS**
-
-- Stored raw CSV in: `gs://<bucket>/week3/big_dataset.csv`
-
-📸 Screenshot:  
-![gcs-raw](screenshots/gcs_raw.png)
-
----
-
-### **1.2 Dataproc PySpark Transformation**
-
-PySpark cleans & transforms 2.7M+ rows:
-
-- Schema enforcement  
-- Null handling  
-- Datetime conversion  
-- Partitioning  
-- Writes processed output to GCS  
-
-📸 Dataproc Cluster Creation:  
-![dataproc-create](screenshots/dataporc_cluster3.png)
-
-📸 PySpark Output in GCS:  
-![gcs-processed](screenshots/dataproc_cluster.png)
-
----
-
-### **1.3 Load to BigQuery**
-
-Processed files loaded to BigQuery using:
-
-- GCSToBigQueryOperator (Airflow)  
-- Partitioned tables  
-- Analytical views  
-
-📸 BigQuery Table Preview:  
-![bq-table-schema](screenshots/bigquery_tables.png)
-
-📸 BigQuery Views:  
-![bq-views](screenshots/views.png)
-
----
-
-# ⚙️ **2. Airflow Orchestration**
-
-The full pipeline is automated with Airflow:
-
-- List files in GCS  
-- Run PySpark job (optional)  
-- Load processed data into BigQuery  
-- Generate views  
-
-📸 Airflow DAG Run:  
-![airflow-run](screenshots/airflowui.png)
-
----
-
-# ⚡ **3. Real-Time Streaming (Kafka + Spark Structured Streaming)**
-
-### **3.1 Kafka Setup**
-
-- Created Kafka topics  
-- Producer sends taxi trip events  
-- Consumer verifies stream  
-
-### **3.2 Spark Structured Streaming Job**
-
-- Reads Kafka JSON messages  
-- Normalizes timestamps  
-- Writes micro-batches to output sink  
-- Fault-tolerant with checkpointing  
-
-📸 Spark Streaming Log:  
-![spark-stream](screenshots/spark.png)
-
----
-
-# 📊 **4. Looker Studio Dashboard**
-
-Interactive dashboard includes:
-
-- Revenue trends  
-- Trip density  
-- Peak hours  
-- Popular pickup zones  
-
-📸 Dashboard screenshot placeholder  
-![dashboard](screenshots/looker_dashboard.png)
-
----
-
-# 🧰 **Tech Stack**
-
-| Category | Tools |
-|---------|-------|
-| Cloud | GCP (GCS, Dataproc, BigQuery, Composer) |
-| Processing | PySpark, Spark Structured Streaming |
-| Streaming | Apache Kafka |
-| Orchestration | Airflow |
-| Dashboard | Looker Studio |
-| Language | Python, SQL |
-
----
-
-# 📈 Key Achievements
-
-- Processed **2.7M+ taxi records** end-to-end  
-- Automated entire pipeline with Airflow  
-- Built **real-time + batch** hybrid architecture  
-- Created reusable architecture used in real data engineering workflows  
-- Developed a public YouTube walkthrough  
-
----
-
-# 📁 Repository Structure
-
+📁 Project Structure
 gcp-data-pipeline-project/
-│── week1/ # Raw ingestion
-│── week2/ # Cleaning & validation
-│── week3/ # PySpark + Dataproc job
-│── week4/ # BigQuery analytics
-│── week5-streaming/ # Kafka + Spark streaming
-│── dags/ # Airflow DAGs
-│── screenshots/ # Architecture + UI screenshots
+│── dags/
+│   └── gcp_etl_dag.py
+│── week3/
+│   └── pyspark_etl.py
+│── week5-streaming/
+│   ├── kafka_producer.py
+│   └── spark_streaming.py
+│── screenshots/
 │── README.md
 
----
+🚀 Batch ETL Pipeline
+1️⃣ Upload Raw Data to GCS
+gsutil cp big_dataset.csv gs://my-gcp-bucket/raw/big_dataset.csv
 
 
----
+2️⃣ PySpark Transformation (Dataproc)
 
-# ▶️ How to Run This Project
+week3/pyspark_etl.py
 
-### **Batch Pipeline**
-1. Upload dataset to GCS  
-2. Spin up Dataproc cluster  
-3. Run PySpark job  
-4. Load into BigQuery  
-5. Use Looker Studio for visualization  
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, to_timestamp
 
-### **Streaming Pipeline**
-1. Start Kafka broker & topic  
-2. Run producer script  
-3. Start Spark Structured Streaming job  
-4. Query live data  
+spark = SparkSession.builder.appName("TaxiETL").getOrCreate()
 
----
+input_path = "gs://my-gcp-bucket/raw/big_dataset.csv"
+output_path = "gs://my-gcp-bucket/processed/taxi_data"
 
-# 📬 Contact
+df = spark.read.option("header", True).csv(input_path)
 
-**Ruthvik Kumar Yadav Maram**  
-📍 Schaumburg, IL  
-📧 ruthvikyadav930@gmail.com  
-🔗 LinkedIn: https://www.linkedin.com/in/ruthvikyadav/  
-🔗 GitHub: https://github.com/Ruthvikyadavm  
-🔗 YouTube Demo: https://youtu.be/Cb2BpFoL30g  
+clean_df = (
+    df
+    .dropna(subset=["pickup_datetime", "fare_amount"])
+    .withColumn("pickup_datetime",
+                to_timestamp(col("pickup_datetime"), "yyyy-MM-dd HH:mm:ss"))
+    .withColumn("fare_amount", col("fare_amount").cast("double"))
+)
 
----
+clean_df.write.mode("overwrite").parquet(output_path)
 
+spark.stop()
 
 
 
 
 
+3️⃣ Load into BigQuery (Airflow)
+
+dags/gcp_etl_dag.py
+
+from airflow import DAG
+from airflow.providers.google.cloud.transfers.gcs_to_bigquery import GCSToBigQueryOperator
+from airflow.utils.dates import days_ago
+
+with DAG(
+    dag_id="gcp_batch_etl",
+    start_date=days_ago(1),
+    schedule_interval="@daily",
+    catchup=False
+) as dag:
+
+    load_to_bq = GCSToBigQueryOperator(
+        task_id="load_to_bigquery",
+        bucket="my-gcp-bucket",
+        source_objects=["processed/taxi_data/*"],
+        destination_project_dataset_table="my_project.analytics.taxi_trips",
+        source_format="PARQUET",
+        write_disposition="WRITE_TRUNCATE",
+        autodetect=True
+    )
+
+
+4️⃣ BigQuery Analytics View
+CREATE OR REPLACE VIEW analytics.daily_revenue AS
+SELECT
+  DATE(pickup_datetime) AS trip_date,
+  SUM(fare_amount) AS total_revenue
+FROM analytics.taxi_trips
+GROUP BY trip_date;
 
 
 
+
+
+⚡ Real-Time Streaming Pipeline
+5️⃣ Kafka Producer
+
+week5-streaming/kafka_producer.py
+
+from kafka import KafkaProducer
+import json
+import time
+import random
+
+producer = KafkaProducer(
+    bootstrap_servers="localhost:9092",
+    value_serializer=lambda v: json.dumps(v).encode("utf-8")
+)
+
+while True:
+    event = {
+        "pickup_datetime": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "fare_amount": round(random.uniform(5, 50), 2)
+    }
+    producer.send("taxi_topic", event)
+    time.sleep(1)
+
+6️⃣ Spark Structured Streaming Consumer
+
+week5-streaming/spark_streaming.py
+
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import from_json, col
+from pyspark.sql.types import StructType, StringType, DoubleType
+
+spark = SparkSession.builder.appName("KafkaStreaming").getOrCreate()
+
+schema = StructType() \
+    .add("pickup_datetime", StringType()) \
+    .add("fare_amount", DoubleType())
+
+kafka_df = (
+    spark.readStream
+    .format("kafka")
+    .option("kafka.bootstrap.servers", "localhost:9092")
+    .option("subscribe", "taxi_topic")
+    .load()
+)
+
+parsed_df = kafka_df.select(
+    from_json(col("value").cast("string"), schema).alias("data")
+).select("data.*")
+
+query = (
+    parsed_df.writeStream
+    .format("console")
+    .outputMode("append")
+    .start()
+)
+
+query.awaitTermination()
+
+
+📊 BI Dashboard (Looker Studio)
+
+Metrics:
+
+Daily revenue
+
+Peak hours
+
+Trip density
+
+Pickup zones
+
+🧰 Tech Stack
+Layer	Tools
+Cloud	GCP (GCS, Dataproc, BigQuery, Composer)
+Processing	PySpark, Spark Structured Streaming
+Streaming	Apache Kafka
+Orchestration	Airflow
+BI	Looker Studio
+Language	Python, SQL
+📈 Key Outcomes
+
+Built batch + streaming hybrid architecture
+
+Processed 2.7M+ records
+
+Automated pipelines using Airflow
+
+Delivered analytics-ready datasets
+
+Implemented fault-tolerant streaming
+
+📬 Contact
+
+Ruthvik Kumar Yadav Maram
+📍 Schaumburg, IL
+📧 ruthvikyadav930@gmail.com
+
+🔗 LinkedIn: https://www.linkedin.com/in/ruthvikyadav/
+
+🔗 GitHub: https://github.com/Ruthvikyadavm
+
+✅ IMPORTANT
+
+Make sure these files exist:
+
+screenshots/
+├── architecture-batch.png
+├── architecture-streaming.png
+├── gcs-raw.png
+├── dataproc-create.png
+├── gcs-processed.png
+├── bq-table-schema.png
+├── bq-views.png
+├── airflow-run.png
+├── spark-stream.png
+├── dashboard.png
