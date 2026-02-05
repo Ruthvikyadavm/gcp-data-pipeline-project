@@ -207,8 +207,6 @@ Ruthvik Kumar Yadav Maram
 
 ✅ IMPORTANT
 
-Make sure these files exist:
-
 screenshots/
 ├── architecture-batch.png
 ├── architecture-streaming.png
